@@ -93,7 +93,7 @@ class Epics extends AbstractPackage {
     public function updateIssues($repoId, $issueId, array $addIssues = array(), array $removeIssues = array()) {
 
         // Build the request path.
-        $path = '/repositories/' . (int) $repoId . '/issues/' . (int) $issueId. '/update_issues';
+        $path = '/repositories/' . (int) $repoId . '/epics/' . (int) $issueId. '/update_issues';
 
         // Build the request data.
         $data = array();
