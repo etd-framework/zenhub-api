@@ -95,19 +95,20 @@ class Epics extends AbstractPackage {
         // Build the request path.
         $path = '/repositories/' . (int) $repoId . '/epics/' . (int) $issueId. '/update_issues';
 
-        // Build the request data.
-        $data = array();
-
         // Ensure that we have a non-associative array.
         if (!empty($addIssues)) {
             $addIssues = array_values($addIssues);
-            $data["add_issues"] = $addIssues;
-
         }
+
         if (!empty($removeIssues)) {
             $removeIssues = array_values($removeIssues);
-            $data["remove_issues"] = $removeIssues;
         }
+
+        // Build and encode the request data.
+        $data = json_encode([
+            "remove_issues" => $removeIssues,
+            "add_issues"    => $addIssues
+        ]);
 
         // Send the request.
         return $this->processResponse($this->client->post($this->fetchUrl($path), $data));
