@@ -129,10 +129,10 @@ class Issues extends AbstractPackage {
             $issues = array_values($issues);
         }
 
-        // Build the request data.
-        $data = array(
+        // Build and encode the request data.
+        $data = json_encode(array(
             "issues" => $issues
-        );
+        ));
 
         // Send the request.
         return $this->processResponse($this->client->post($this->fetchUrl($path), $data));
